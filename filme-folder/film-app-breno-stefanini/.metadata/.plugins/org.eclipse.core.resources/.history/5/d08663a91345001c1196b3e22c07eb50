@@ -1,0 +1,11 @@
+package com.brenodelgado.stefanini.resources;
+
+import java.util.LinkedList;
+
+import com.brenodelgado.stefanini.model.Film;
+
+public class SearchForTitle {
+	
+	
+
+}

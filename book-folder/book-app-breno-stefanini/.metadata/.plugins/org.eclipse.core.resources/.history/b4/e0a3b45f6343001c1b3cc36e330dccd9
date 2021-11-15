@@ -1,0 +1,7 @@
+package com.brenodelgado.stefanini.repositories;
+
+import org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtension;
+
+public class BookRepository extends JpaRepository{
+
+}

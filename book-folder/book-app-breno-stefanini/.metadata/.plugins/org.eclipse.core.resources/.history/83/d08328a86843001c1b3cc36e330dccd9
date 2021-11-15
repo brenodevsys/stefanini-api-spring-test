@@ -1,0 +1,20 @@
+package com.brenodelgado.stefanini.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.brenodelgado.stefanini.model.Book;
+
+import repositories.BookRepository;
+
+@Service
+public class BookService {
+	
+	@Autowired
+	public BookRepository repository;
+	
+	public Book saveBook (Book book) {
+		return repository.save(book);
+	}
+
+}

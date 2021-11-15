@@ -1,0 +1,19 @@
+package com.brenodelgado.stefanini.model;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@RequiredArgsConstructor
+public class Film {
+	
+	private String title;
+	private String author;
+	private String country;
+	private String releaseDate;
+	private String cinematography;
+	private String type;
+
+}

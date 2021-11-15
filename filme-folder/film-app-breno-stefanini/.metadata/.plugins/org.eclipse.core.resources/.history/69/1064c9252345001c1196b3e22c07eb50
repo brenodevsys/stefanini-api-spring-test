@@ -1,0 +1,5 @@
+package com.brenodelgado.stefanini.resources;
+
+public class SearchTitle {
+
+}

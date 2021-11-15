@@ -1,0 +1,84 @@
+package com.brenodelgado.stefanini.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.brenodelgado.stefanini.model.Book;
+import com.brenodelgado.stefanini.repositorie.BookRepository;
+//import com.brenodelgado.stefanini.services.BookService;
+
+import lombok.AllArgsConstructor;
+
+
+@RestController
+@RequestMapping("/book")
+@AllArgsConstructor
+public class BookController {
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
+	@PostMapping
+	public ResponseEntity<Book> saveBook (@RequestBody Book book) {
+		bookRepository.save(book);
+		return new ResponseEntity<>(book, HttpStatus.OK);	
+	}
+	
+	@GetMapping
+	public List<Book> getAll() {
+		return bookRepository.findAll();
+	}
+	
+	@GetMapping(path="/{id}")
+	public ResponseEntity<Optional<Book>> getById(@PathVariable Long id){
+		Optional<Book> book;
+		try {
+			book = bookRepository.findById(id);
+			return new ResponseEntity<Optional<Book>>(book, HttpStatus.OK);
+			
+		} catch(NoSuchElementException e) {
+			return new ResponseEntity<Optional<Book>>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@DeleteMapping(path="/{id}")
+	public ResponseEntity<Optional<Book>> deleteById(@PathVariable Long id){
+		try {
+			bookRepository.deleteById(id);
+			return new ResponseEntity<Optional<Book>>(HttpStatus.OK);
+			
+		} catch(NoSuchElementException e) {
+			return new ResponseEntity<Optional<Book>>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
+	
+	public ResponseEntity<Book> update(@PathVariable Long Id, @RequestBody Book newBook) {
+		return bookRepository.findById(Id)
+				.map(book -> {
+					book.setTitle(newBook.getTitle());
+					book.setAuthor(newBook.getAuthor());
+					book.setCountry(newBook.getCountry());
+					book.setReleaseDate(newBook.getReleaseDate());
+					book.setPublisher(newBook.getPublisher());
+					book.setType(newBook.getType());
+					Book bookUpdated = bookRepository.save(book);
+					return ResponseEntity.ok().body(bookUpdated);
+					}).orElse(ResponseEntity.notFound().build());
+	}
+
+}

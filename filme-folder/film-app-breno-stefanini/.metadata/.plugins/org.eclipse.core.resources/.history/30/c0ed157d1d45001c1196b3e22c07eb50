@@ -1,0 +1,20 @@
+package com.brenodelgado.stefanini.repositorie;
+
+
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.brenodelgado.stefanini.model.Film;
+
+@Repository
+public interface FilmRepository extends JpaRepository<Film, Long>{
+	
+    @Query("select * from film where title like (%)")
+    public Optional<Film> findByTitle(@Param("title") String title);
+		
+}

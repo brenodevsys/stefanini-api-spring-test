@@ -1,0 +1,23 @@
+package com.brenodelgado.stefanini.utils;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum Type {
+	
+	BOOK("book"),
+	FILM("film");
+	
+	private String description;
+	
+	Type(String description) {
+		this.description = description;
+	}
+	
+	
+	
+	
+
+}

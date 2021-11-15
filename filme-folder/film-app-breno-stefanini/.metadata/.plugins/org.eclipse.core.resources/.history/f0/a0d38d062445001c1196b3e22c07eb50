@@ -1,0 +1,28 @@
+package com.brenodelgado.stefanini.resources;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.brenodelgado.stefanini.model.Film;
+import com.brenodelgado.stefanini.repositorie.FilmRepository;
+
+
+@RequestMapping("/film/title")
+public class SearchTitle {
+	
+	Scanner sc = new Scanner(System.in);
+	
+	private FilmRepository findRepository;
+	
+	
+	public List<Film> getByTitle() {
+		
+
+		return findRepository.findByTitle("%");
+	
+	}
+	
+
+}

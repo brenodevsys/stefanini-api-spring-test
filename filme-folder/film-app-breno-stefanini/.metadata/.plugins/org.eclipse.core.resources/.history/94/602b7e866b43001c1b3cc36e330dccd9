@@ -1,0 +1,9 @@
+package repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.brenodelgado.stefanini.model.Book;
+
+public interface BookRepository extends JpaRepository<Book, Long>{
+
+}

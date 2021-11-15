@@ -1,0 +1,18 @@
+package com.brenodelgado.stefanini.model;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import aj.org.objectweb.asm.Type;
+
+public class Film {
+	
+	private String title;
+	private String author;
+	private String country;
+	private String releaseDate;
+	private String cinematography;
+	@Enumerated(EnumType.STRING)
+	private Type type;
+
+}

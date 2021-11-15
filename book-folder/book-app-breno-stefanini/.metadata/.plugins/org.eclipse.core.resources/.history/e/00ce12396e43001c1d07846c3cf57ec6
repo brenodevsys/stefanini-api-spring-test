@@ -1,0 +1,5 @@
+package com.brenodelgado.stefanini.repositorie;
+
+public interface BookRepository {
+
+}
